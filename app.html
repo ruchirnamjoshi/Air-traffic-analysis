@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number of Adjusted Passenger Prediction</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  function predict_passengers() {
+  console.log("Estimate price button clicked");
+
+    var OA = document.getElementById("oa");
+    var OAC = document.getElementById("oac");
+    var PA = document.getElementById("pa");
+    var PAC = document.getElementById("pac");
+    var GS = document.getElementById("gs");
+    var GR = document.getElementById("gr");
+    var ATC = document.getElementById("atc");
+    var PCC = document.getElementById("pcc");
+    var TER = document.getElementById("ter");
+    var BA = document.getElementById("ba");
+    var AATC = document.getElementById("aatc");
+    var MONTH = document.getElementById("month");
+    var NP = document.getElementById("np");
+    var estP = document.getElementById("uiEstimatedP");
+
+
+  var url = "http://127.0.0.1:5000/predict_passenger_count"; //Use this if you are NOT using nginx which is first 7 tutorials
+  // var url = "/api/predict_home_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+
+  $.post(url, {
+
+      pas_count: parseFloat(NP.value),
+      op_air: OA.value,
+      IATA_code: OAC.value,
+      pub_air: PA.value,
+      pa_IATA: PAC.value,
+      geo_summ: GS.value,
+      geo_region: GR.value,
+      act_code: ATC.value,
+      price_cat: PCC.value,
+      terminal: TER.value,
+      bord_area: BA.value,
+      aa_code: AATC.value,
+      month: MONTH.value,
+  },function(data, status) {
+      console.log(data.estimated_p);
+      estP.innerHTML = "<h2>" + data.estimated_p.toString() + "</h2>";
+      console.log(status);
+  });
+}
+
+</script>
+
+	<link rel="stylesheet" href="app.css">
+
+</head>
+<body>
+<div class="img"></div>
+<form class="form">
+    <h1>Number of Passanger that can be adjusted</h1>
+	<h2>Number of Passengers</h2>
+    <input class="area"  type="text" id="np" class="floatLabel" name="Squareft" value="0">
+
+
+		<h2>Operating Airline</h2>
+	<div>
+  <select class="location" name="" id="oa">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>ATA Airlines</option>
+
+        <option> Air China</option>
+        <option>Air France</option>
+        <option>Air New Zealand</option>
+        <option>AirTran Airways</option>
+      <option>Alaska Airlines</option>
+      <option>All Nippon Airways</option>
+      <option>American Airlines</option>
+      <option>American Eagle Airlines</option>
+      <option>Asiana Airlines</option>
+      <option>Atlantic Southeast Airlines</option>
+      <option>BelAir Airlines</option>
+      <option>British Airways</option>
+      <option>Cathay Pacific</option>
+      <option>China Airlines</option>
+      <option>Delta Air Lines</option>
+      <option>EVA Airways</option>
+      <option>Frontier Airlines</option>
+      <option>Hawaiian Airlines</option>
+      <option>Horizon Air </option>
+      <option>Icelandair</option>
+      <option>Independence Air</option>
+      <option>Japan Airlines</option>
+      <option>KLM Royal Dutch Airlines</option>
+      <option>Korean Air Lines</option>
+      <option>Lufthansa German Airlines</option>
+      <option>Mesa Airlines</option>
+      <option>Mexicana Airlines</option>
+      <option>Midwest Airlines</option>
+      <option>Northwest Airlines</option>
+    <option>Philippine Airlines</option>
+        <option>Singapore Airlines</option>
+      <option>SkyWest Airlines</option>
+      <option>Sun Country Airlines</option>
+      <option>TACA</option>
+      <option>US Airways</option>
+      <option>United Airlines</option>
+      <option>United Airlines - Pre 07/01/2013</option>
+      <option>Virgin Atlantic</option>
+      <option>WestJet Airlines</option>
+      <option>Boeing Company</option>
+      <option>Miami Air International</option>
+      <option>Air Canada Jazz</option>
+      <option>Qantas Airways</option>
+      <option>Ameriflight</option>
+      <option>Spirit Airlines</option>
+      <option>Xtra Airways</option>
+      <option>Evergreen International Airlines</option>
+      <option>Aeromexico</option>
+      <option>JetBlue Airways </option>
+      <option>ExpressJet Airlines</option>
+      <option>Southwest Airlines</option>
+      <option>Virgin America</option>
+      <option>Aer Lingus</option>
+      <option>Allegiant Air</option>
+      <option>Jet Airways</option>
+      <option>Emirates </option>
+    <option>Mesaba Airlines</option>
+      <option>World Airways</option>
+      <option>Air Berlin</option>
+      <option>Republic Airlines</option>
+      <option>Servisair</option>
+      <option>Pacific Aviation</option>
+      <option>Swiss International</option>
+      <option>LAN Peru</option>
+      <option>Swissport USA</option>
+    <option>XL Airways France</option>
+      <option>China Eastern</option>
+      <option>SAS Airlines</option>
+      <option>Atlas Air, Inc</option>
+      <option>Compass Airlines</option>
+      <option>Etihad Airways</option>
+      <option>China Southern</option>
+      <option>Turkish Airlines</option>
+      <option>COPA Airlines, Inc.</option>
+    <option>Air India Limited</option>
+
+
+  </select>
+</div>
+
+    <h2>Operating Airline IATA Code</h2>
+	<div>
+  <select class="location" name="" id="oac">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>TZ</option>
+        <option>AC</option>
+        <option>CA</option>
+        <option>AF</option>
+    <option>NZ</option>
+        <option>FL</option>
+      <option>AS</option>
+      <option>NH</option>
+      <option>AA</option>
+      <option>MQ</option>
+      <option>OZ</option>
+      <option>EV</option>
+      <option>4T</option>
+      <option>BA</option>
+      <option>CX</option>
+      <option>CI</option>
+      <option>DL</option>
+      <option>BR</option>
+      <option>F9</option>
+      <option>HA</option>
+      <option>QX</option>
+      <option>FI</option>
+      <option>DH</option>
+      <option>JL</option>
+      <option>KL</option>
+      <option>KE</option>
+      <option>LH</option>
+      <option>YV</option>
+      <option>MX</option>
+      <option>YX</option>
+      <option>NW</option>
+    <option>PR</option>
+        <option>SQ</option>
+      <option>OO</option>
+      <option>SY</option>
+      <option>TA</option>
+      <option>US </option>
+      <option>UA</option>
+      <option>VS</option>
+      <option>WS</option>
+      <option>GL</option>
+      <option>QK</option>
+      <option>QF</option>
+      <option>A8</option>
+      <option>NK</option>
+      <option>XP</option>
+      <option>EZ</option>
+      <option>AM</option>
+      <option>B6</option>
+      <option>XE</option>
+      <option>WN</option>
+      <option>VX</option>
+      <option>EI</option>
+      <option>G4</option>
+      <option>9W</option>
+      <option>BBB</option>
+      <option>EK</option>
+      <option>XJ</option>
+    <option>WO</option>
+      <option>AB</option>
+      <option>RW</option>
+      <option>LX</option>
+      <option>LP</option>
+      <option>SE</option>
+      <option>MU</option>
+      <option>SK</option>
+      <option>5Y</option>
+    <option>CP</option>
+      <option>EY</option>
+      <option>CZ</option>
+      <option>TK</option>
+      <option>CM</option>
+      <option>AI</option>
+
+
+
+  </select>
+</div>
+
+    <h2>Published Airline</h2>
+	<div>
+  <select class="location" name="" id="pa">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>ATA Airlines</option>
+
+        <option> Air China</option>
+        <option>Air France</option>
+    <option>Air New Zealand</option>
+        <option>AirTran Airways</option>
+      <option>Alaska Airlines</option>
+      <option>All Nippon Airways</option>
+      <option>American Airlines</option>
+      <option>American Eagle Airlines</option>
+      <option>Asiana Airlines</option>
+      <option>Atlantic Southeast Airlines</option>
+      <option>BelAir Airlines</option>
+      <option>British Airways</option>
+      <option>Cathay Pacific</option>
+      <option>China Airlines</option>
+      <option>Delta Air Lines</option>
+      <option>EVA Airways</option>
+      <option>Frontier Airlines</option>
+      <option>Hawaiian Airlines</option>
+      <option>Horizon Air </option>
+      <option>Icelandair</option>
+      <option>Independence Air</option>
+      <option>Japan Airlines</option>
+      <option>KLM Royal Dutch Airlines</option>
+      <option>Korean Air Lines</option>
+      <option>Lufthansa German Airlines</option>
+      <option>Mesa Airlines</option>
+      <option>Mexicana Airlines</option>
+      <option>Midwest Airlines</option>
+      <option>Northwest Airlines</option>
+    <option>Philippine Airlines</option>
+        <option>Singapore Airlines</option>
+      <option>SkyWest Airlines</option>
+      <option>Sun Country Airlines</option>
+      <option>TACA</option>
+      <option>US Airways</option>
+      <option>United Airlines</option>
+      <option>United Airlines - Pre 07/01/2013</option>
+      <option>Virgin Atlantic</option>
+      <option>WestJet Airlines</option>
+      <option>Boeing Company</option>
+      <option>Miami Air International</option>
+      <option>Air Canada Jazz</option>
+      <option>Qantas Airways</option>
+      <option>Ameriflight</option>
+      <option>Spirit Airlines</option>
+      <option>Xtra Airways</option>
+      <option>Evergreen International Airlines</option>
+      <option>Aeromexico</option>
+      <option>JetBlue Airways </option>
+      <option>ExpressJet Airlines</option>
+      <option>Southwest Airlines</option>
+      <option>Virgin America</option>
+      <option>Aer Lingus</option>
+      <option>Allegiant Air</option>
+      <option>Jet Airways</option>
+      <option>Emirates </option>
+    <option>Mesaba Airlines</option>
+      <option>World Airways</option>
+      <option>Air Berlin</option>
+      <option>Republic Airlines</option>
+      <option>Servisair</option>
+      <option>Pacific Aviation</option>
+      <option>Swiss International</option>
+      <option>LAN Peru</option>
+      <option>Swissport USA</option>
+    <option>XL Airways France</option>
+      <option>China Eastern</option>
+      <option>SAS Airlines</option>
+      <option>Atlas Air, Inc</option>
+      <option>Compass Airlines</option>
+      <option>Etihad Airways</option>
+      <option>China Southern</option>
+      <option>Turkish Airlines</option>
+      <option>COPA Airlines, Inc.</option>
+    <option>Air India Limited</option>
+
+
+  </select>
+</div>
+
+
+<h2>Published Airline IATA code</h2>
+	<div>
+  <select class="location" name="" id="pac">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>TZ</option>
+        <option>AC</option>
+        <option>CA</option>
+        <option>AF</option>
+    <option>NZ</option>
+        <option>FL</option>
+      <option>AS</option>
+      <option>NH</option>
+      <option>AA</option>
+      <option>MQ</option>
+      <option>OZ</option>
+      <option>EV</option>
+      <option>4T</option>
+      <option>BA</option>
+      <option>CX</option>
+      <option>CI</option>
+      <option>DL</option>
+      <option>BR</option>
+      <option>F9</option>
+      <option>HA</option>
+      <option>QX</option>
+      <option>FI</option>
+      <option>DH</option>
+      <option>JL</option>
+      <option>KL</option>
+      <option>KE</option>
+      <option>LH</option>
+      <option>YV</option>
+      <option>MX</option>
+      <option>YX</option>
+      <option>NW</option>
+    <option>PR</option>
+        <option>SQ</option>
+      <option>OO</option>
+      <option>SY</option>
+      <option>TA</option>
+      <option>US </option>
+      <option>UA</option>
+      <option>VS</option>
+      <option>WS</option>
+      <option>GL</option>
+      <option>QK</option>
+      <option>QF</option>
+      <option>A8</option>
+      <option>NK</option>
+      <option>XP</option>
+      <option>EZ</option>
+      <option>AM</option>
+      <option>B6</option>
+      <option>XE</option>
+      <option>WN</option>
+      <option>VX</option>
+      <option>EI</option>
+      <option>G4</option>
+      <option>9W</option>
+      <option>BBB</option>
+      <option>EK</option>
+      <option>XJ</option>
+    <option>WO</option>
+      <option>AB</option>
+      <option>RW</option>
+      <option>LX</option>
+      <option>LP</option>
+      <option>SE</option>
+      <option>MU</option>
+      <option>SK</option>
+      <option>5Y</option>
+    <option>CP</option>
+      <option>EY</option>
+      <option>CZ</option>
+      <option>TK</option>
+      <option>CM</option>
+      <option>AI</option>
+
+  </select>
+</div>
+
+
+<h2>GEO Summary</h2>
+	<div>
+  <select class="location" name="" id="gs">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>Domestic</option>
+        <option>International</option>
+
+
+  </select>
+</div>
+
+<h2>GEO Region</h2>
+	<div>
+  <select class="location" name="" id="gr">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>US</option>
+        <option>Canada</option>
+        <option>Asia</option>
+      <option>Europe</option>
+      <option>Australia / Oceania</option>
+      <option>Mexico</option>
+      <option>Central America</option>
+      <option>Middle East</option>
+      <option>South America</option>
+
+  </select>
+</div>
+
+
+  <h2>Activity Type Code</h2>
+	<div>
+  <select class="location" name="" id="atc">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>Deplaned</option>
+        <option>Enplaned</option>
+        <option>Thru / Transit</option>
+
+  </select>
+</div>
+
+
+  <h2>Price Category Code</h2>
+	<div>
+  <select class="location" name="" id="pcc">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>Low Fare</option>
+        <option>Other</option>
+  </select>
+</div>
+
+
+  <h2>Terminal</h2>
+	<div>
+  <select class="location" name="" id="ter">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>Terminal 1</option>
+        <option>International</option>
+        <option>Terminal 3</option>
+      <option>Other</option>
+      <option>Terminal 2</option>
+
+  </select>
+</div>
+
+
+  <h2>Boarding Area</h2>
+	<div>
+  <select class="location" name="" id="ba">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>B</option>
+        <option>G</option>
+        <option>A</option>
+      <option>E</option>
+      <option>C</option>
+      <option>F</option>
+      <option>Other</option>
+      <option>D</option>
+
+  </select>
+</div>
+
+
+  <h2>Adjusted Activity Type Code</h2>
+	<div>
+  <select class="location" name="" id="aatc">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+		<option>Deplaned</option>
+        <option>Enplaned</option>
+        <option>Thru / Transit * 2</option>
+
+
+  </select>
+</div>
+
+
+  <h2>Month</h2>
+	<div>
+  <select class="location" name="" id="month">
+    <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+
+        <option>January</option>
+      <option>February</option>
+      <option>March</option>
+      <option>April</option>
+      <option>May</option>
+      <option>June</option>
+		<option>July</option>
+        <option>August</option>
+        <option>September</option>
+      <option>October</option>
+      <option>November</option>
+      <option>December</option>
+
+
+
+  </select>
+</div>
+
+
+
+
+	<button class="submit" onclick="predict_passengers()" type="button">Estimate Adjusted Passenger Count</button>
+
+	<div id="uiEstimatedP" class="result">	<h2>Result</h2> </div>
+
+</form>
+</body>
+</html>
